@@ -2,8 +2,8 @@ import secrets
 import os
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request
-from flaskblog.forms import FormDeRegistros, LoginForm, UpdateAccountForm
-from flaskblog.models import Post, User
+from flaskblog.forms import FormDeRegistros, LoginForm, UpdateAccountForm, LearnForm, TeachForm
+from flaskblog.models import User
 from flaskblog import app, db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -82,7 +82,7 @@ def account():
         current_user.username = form.username.data
         current_user.username = form.email.data
         db.session.commit()
-        flash('Tu cuenta has been updated', 'success')
+        flash('Your account has been created', 'success')
         return redirect(url_for('account'))
     elif request.method == 'GET':
         form.username.data = current_user.username
@@ -90,3 +90,22 @@ def account():
 
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account', image_file=image_file, form=form)
+
+
+@app.route("/learn", methods=['GET', 'POST'])
+@login_required
+def new_learn():
+    form = LearnForm()
+    if form.validate_on_submit():
+        flash('Gracias por aprender con nosotros!', 'success')
+        return redirect(url_for('home'))
+    return render_template('learn.html', title='learn with us', form=form)
+
+@app.route("/teach", methods=['GET', 'POST'])
+@login_required
+def new_teach():
+    form = TeachForm()
+    if form.validate_on_submit():
+        flash('Gracias por confiar en nosotros!', 'success')
+        return redirect(url_for('home'))
+    return render_template('teach.html', title='learn with us', form=form)
