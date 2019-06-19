@@ -1,0 +1,23 @@
+{% extends "diseno.html" %}
+{% block content %}
+    <div class="w-100">
+        <h2 class="mb-5">Universitarios</h2>
+        <h2 align="right" class="mb-5">Luteachers</h2>
+        <h2 class="mb-5">Eventos</h2>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Physics Day (1)</h3>
+              <h4><video width="860" height="615" controls="controls" >
+                    <source src="https://www.youtube.com/watch?v=GxEZGibEPAQ&feature=youtu.be"/>
+                  </video>
+              </h4>
+            <div class="subheading mb-3">Clases gratuitas</div>
+            <button type="button" class="btn btn-lg btn-primary" src="{{url_for('register')}}">Registrate ahora</button>
+          </div>
+          <div class="resume-date text-md-right">
+          </div>
+        </div>
+
+      </div>
+{% endblock content %}
