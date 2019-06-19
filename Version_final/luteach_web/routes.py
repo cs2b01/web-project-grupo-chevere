@@ -80,7 +80,7 @@ def account():
             current_user.image_file = picture_file
 
         current_user.username = form.username.data
-        current_user.username = form.email.data
+        current_user.email = form.email.data
         db.session.commit()
         flash('Your account has been created', 'success')
         return redirect(url_for('account'))
